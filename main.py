@@ -80,7 +80,7 @@ def plot_training_results(history):
     plt.show()
 
 def load_model():
-    return tf.keras.models.load_model('emotion_model_nowy.h5')
+    return tf.keras.models.load_model('emotion_model_nowy_dzialajacy.h5')
 
 def predict_emotion():
     emotion_labels = ['angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise']
@@ -119,12 +119,6 @@ def predict_emotion():
 
 if __name__ == '__main__':
     data_dir = 'C:/Users/febe/PycharmProjects/AI_Emotion_Recognition'
-
-    train_ds, test_ds = load_fer2013(data_dir)
-
-    model = build_model()
-    history = train_model(model, train_ds, test_ds)
-
-    plot_training_results(history)
+    model = load_model()
 
     predict_emotion()
