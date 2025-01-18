@@ -54,8 +54,8 @@ def build_model():
     return model
 
 def train_model(model, train_ds, test_ds):
-    history = model.fit(train_ds, validation_data=test_ds, epochs=85)
-    model.save('emotion_model_nowy_dzialajacy.h5')
+    history = model.fit(train_ds, validation_data=test_ds, epochs=45)
+    model.save('emotion_model_nowy_dzialajacy__.h5')
     return history
 
 def plot_training_results(history):
@@ -119,6 +119,18 @@ def predict_emotion():
 
 if __name__ == '__main__':
     data_dir = 'C:/Users/febe/PycharmProjects/AI_Emotion_Recognition'
-    model = load_model()
 
-    predict_emotion()
+    # Load the training and testing datasets
+    train_ds, test_ds = load_fer2013(data_dir)
+
+    # Build the model
+    model = build_model()
+
+    # Train the model for 90 epochs
+    history = train_model(model, train_ds, test_ds)
+
+    # Save the trained model to a new file
+    model.save('emotion_model_90_epochs.h5')
+
+    # Optionally, plot the training results
+    plot_training_results(history)
